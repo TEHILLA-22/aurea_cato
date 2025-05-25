@@ -471,42 +471,49 @@
         }
         
         /* Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .music-control {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .music-control:hover {
-            transform: scale(1.1);
-        }
-        
-        .music-info {
-            font-size: 0.9rem;
-        }
+       /* Update music player styles */
+.music-player {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.music-control {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    padding: 5px;
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+}
+
+.music-info {
+    font-size: 0.9rem;
+    min-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
         
         /* Responsive */
         @media (max-width: 768px) {
             .countdown-title {
                 font-size: 2.5rem;
+                margin-left: 30px;
             }
             
             .countdown-container {
@@ -730,17 +737,92 @@
         <i class="fab fa-whatsapp"></i>
     </div>
     
-    <!-- Music Player -->
-    <div class="music-player">
-        <button class="music-control" id="play-btn"><i class="fas fa-play"></i></button>
-        <button class="music-control" id="pause-btn" style="display: none;"><i class="fas fa-pause"></i></button>
-        <span class="music-info">Birthday Song</span>
-    </div>
     
-    <!-- Audio Element -->
-    <audio id="birthday-music" loop>
-        <source src="Sapphire_-_Unity_Acoustic_.mp3" type="audio/mpeg">
-    </audio>
+    
+   <!-- Update the music player section in your HTML -->
+<div class="music-player">
+  <button class="music-control" id="play-btn"><i class="fas fa-play"></i></button>
+  <button class="music-control" id="pause-btn" style="display: none;"><i class="fas fa-pause"></i></button>
+  <span class="music-info" id="song-info">Press play to start music</span>
+ 
+</div>
+
+<!-- Audio Element -->
+<audio id="birthday-music"></audio>
+
+<script>
+  // Music Player Functionality
+  const audio = document.getElementById('birthday-music');
+  const playBtn = document.getElementById('play-btn');
+  const pauseBtn = document.getElementById('pause-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const songInfo = document.getElementById('song-info');
+  
+  // Playlist - Add your own song URLs here
+  const playlist = [
+      {
+          title: "Happy Birthday",
+          url: "Sapphire_-_Unity_Acoustic_.mp3"
+      },
+      {
+          title: "Celebration Time",
+          url: "Rose_Ft_Bruno_Mars_-_APT.mp3"
+      },
+      {
+          title: "Friendship Anthem",
+          url: "Alan_Walker_ft_Ava_Max_-_Alone_Pt_II.mp3"
+      }
+  ];
+  
+  let currentSongIndex = 0;
+  let isPlaying = false;
+  
+  // Load a song from the playlist
+  function loadSong(index) {
+      currentSongIndex = index;
+      const song = playlist[currentSongIndex];
+      audio.src = song.url;
+      songInfo.textContent = ` ${song.title}`;
+      
+      if (isPlaying) {
+          audio.play().catch(e => console.log("Auto-play prevented:", e));
+      }
+  }
+  
+  // Play next song in playlist
+  function nextSong() {
+      currentSongIndex = (currentSongIndex + 1) % playlist.length;
+      loadSong(currentSongIndex);
+  }
+  
+  // Event listeners
+  playBtn.addEventListener('click', () => {
+      isPlaying = true;
+      audio.play();
+      playBtn.style.display = 'none';
+      pauseBtn.style.display = 'block';
+      
+      // Load first song if none is loaded
+      if (!audio.src) {
+          loadSong(0);
+      }
+  });
+  
+  pauseBtn.addEventListener('click', () => {
+      isPlaying = false;
+      audio.pause();
+      pauseBtn.style.display = 'none';
+      playBtn.style.display = 'block';
+  });
+  
+  nextBtn.addEventListener('click', nextSong);
+  
+  // When song ends, play next one automatically
+  audio.addEventListener('ended', nextSong);
+  
+  // Load first song when page loads (but don't autoplay)
+  loadSong(0);
+</script>
     
     <script>
         // Countdown Timer
@@ -867,21 +949,21 @@
         });
         
         // Music Player
-        const audio = document.getElementById('birthday-music');
-        const playBtn = document.getElementById('play-btn');
-        const pauseBtn = document.getElementById('pause-btn');
+        // const audio = document.getElementById('birthday-music');
+        // const playBtn = document.getElementById('play-btn');
+        // const pauseBtn = document.getElementById('pause-btn');
         
-        playBtn.addEventListener('click', () => {
-            audio.play();
-            playBtn.style.display = 'none';
-            pauseBtn.style.display = 'block';
-        });
+        // playBtn.addEventListener('click', () => {
+        //     audio.play();
+        //     playBtn.style.display = 'none';
+        //     pauseBtn.style.display = 'block';
+        // });
         
-        pauseBtn.addEventListener('click', () => {
-            audio.pause();
-            pauseBtn.style.display = 'none';
-            playBtn.style.display = 'block';
-        });
+        // pauseBtn.addEventListener('click', () => {
+        //     audio.pause();
+        //     pauseBtn.style.display = 'none';
+        //     playBtn.style.display = 'block';
+        // });
         
         // Check if countdown is already over on page load
         const now = new Date();
