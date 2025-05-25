@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cato & Aurea's Magical Birthday Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --dark: #292f36;
+            --light: #f7fff7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        /* Countdown Section */
+        #countdown-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #292f36 0%, #1a1e23 100%);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .countdown-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(255, 230, 109, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .countdown-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-width: 120px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--secondary);
+        }
+        
+        .loading-bar {
+            width: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: width 0.5s;
+        }
+        
+        /* Main Content (revealed after countdown) */
+        #main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .birthday-header {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .birthday-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .birthday-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+        
+        .birthday-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Photo Slider */
+        .photo-slider {
+            margin: 5rem auto;
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .slider-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 500px;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+        
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .dot.active {
+            background: var(--primary);
+        }
+        
+        /* Memory Timeline */
+        .timeline-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+        }
+        
+        .timeline-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--accent);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-text {
+            line-height: 1.6;
+        }
+        
+        /* Birthday Wishes */
+        .wishes-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 230, 109, 0.1) 100%);
+        }
+        
+        .wishes-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+        }
+        
+        .wishes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .wish-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            width: calc(50% - 1rem);
+            min-width: 300px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .wish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .wish-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .wish-card p {
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #1a1e23 0%, #292f36 100%);
+            text-align: center;
+            position: relative;
+        }
+        
+        .footer-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 5px var(--primary);
+            animation: explode 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-share {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-share:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 100;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .music-control {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-info {
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .countdown-title {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-container {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .countdown-box {
+                min-width: 80px;
+                padding: 1rem;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+            
+            .birthday-title {
+                font-size: 3rem;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .wish-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Countdown Section -->
+    <section id="countdown-section">
+        <div class="loading-bar"></div>
+        <h1 class="countdown-title">Cato & Aurea's Birthday Countdown</h1>
+        <p class="countdown-subtitle">Our magical birthday celebration begins in...</p>
+        
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <div class="countdown-value" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-value" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <p class="countdown-subtitle">Two amazing souls born just days apart, celebrating life together since 2022</p>
+    </section>
+    
+    <!-- Main Content (revealed after countdown) -->
+    <div id="main-content">
+        <!-- Birthday Header -->
+        <section class="birthday-header">
+            <div class="container">
+                <h1 class="birthday-title">Happy Birthday Cato & Aurea!</h1>
+                <h2 class="birthday-subtitle">June 23 & June 26 - A Celebration of Twin Flames</h2>
+                <p class="birthday-text">
+                    Two incredible souls born under the same summer sky, connected by an unbreakable bond. 
+                    This website is a tribute to our beautiful friendship that has blossomed over the past two years. 
+                    May this birthday mark the beginning of another amazing year filled with love, laughter, and unforgettable memories!
+                </p>
+            </div>
+        </section>
+        
+        <!-- Photo Slider -->
+        <section class="container">
+            <h2 class="timeline-title">Our Journey Together</h2>
+            <div class="photo-slider">
+                <div class="slider-container" id="slider">
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Friends laughing">
+                        <div class="slide-caption">The day we first met - 2022</div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Celebration">
+                        <div class="slide-caption">Celebrating our first birthday together</div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Adventure">
+                        <div class="slide-caption">Our summer adventure - 2023</div>
+                    </div>
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Concert">
+                        <div class="slide-caption">Music festival memories</div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <button class="slider-btn" id="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn" id="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="slider-dots" id="dots-container">
+                    <!-- Dots will be added by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Memory Timeline -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="timeline-title">Our Timeline</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">June 2022</div>
+                            <div class="timeline-text">Cato and Aurea meet for the first time at a mutual friend's gathering. Instant connection!</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">July 2022</div>
+                            <div class="timeline-text">First birthday celebration together - discovering our birthdays are just days apart!</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">December 2022</div>
+                            <div class="timeline-text">Our first holiday season together - exchanging heartfelt gifts and making gingerbread houses.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">June 2023</div>
+                            <div class="timeline-text">Joint birthday trip to the mountains - hiking, stargazing, and deep conversations.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">Present Day</div>
+                            <div class="timeline-text">Celebrating two years of friendship and many more to come!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Birthday Wishes -->
+        <section class="wishes-section">
+            <div class="container">
+                <h2 class="wishes-title">Birthday Wishes</h2>
+                
+                <div class="wishes-container">
+                    <div class="wish-card">
+                        <h3>For Cato</h3>
+                        <p>
+                            May your year be filled with creativity, joy, and all the colors of happiness. 
+                            Your vibrant spirit lights up every room, and I'm so grateful to have you in my life. 
+                            Here's to another year of amazing adventures together!
+                        </p>
+                    </div>
+                    <div class="wish-card">
+                        <h3>For Aurea</h3>
+                        <p>
+                            Your kindness and wisdom inspire everyone around you. 
+                            May this year bring you all the love and success you deserve. 
+                            Thank you for being my rock and my partner in crime. Happy birthday, beautiful soul!
+                        </p>
+                    </div>
+                    <div class="wish-card">
+                        <h3>For Our Friendship</h3>
+                        <p>
+                            Two years of laughter, tears, inside jokes, and unconditional support. 
+                            What we have is rare and precious. May our bond continue to grow stronger with each passing year. 
+                            Cheers to us!
+                        </p>
+                    </div>
+                    <div class="wish-card">
+                        <h3>For the Future</h3>
+                        <p>
+                            May the coming year bring us new experiences, personal growth, 
+                            and countless moments of happiness together. Here's to making more memories that we'll cherish forever!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p class="footer-text">Made with love for Cato & Aurea's special birthday celebration</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="copyright">© 2025 Cato & Aurea's Birthday | All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- WhatsApp Share Button -->
+    <div class="whatsapp-share" id="whatsapp-share">
+        <i class="fab fa-whatsapp"></i>
+    </div>
+    
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-control" id="play-btn"><i class="fas fa-play"></i></button>
+        <button class="music-control" id="pause-btn" style="display: none;"><i class="fas fa-pause"></i></button>
+        <span class="music-info">Birthday Song</span>
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="birthday-music" loop>
+        <source src="Sapphire_-_Unity_Acoustic_.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            // Set the target date to June 23rd of the current year
+            const now = new Date();
+            let targetDate = new Date(now.getFullYear(), 5, 23); // June is month 5 (0-indexed)
+            
+            // If June 23rd has already passed this year, set target to next year
+            if (now > targetDate) {
+                targetDate = new Date(now.getFullYear() + 1, 5, 23);
+            }
+            
+            const timeLeft = targetDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = Math.floor(hours).toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Update loading bar
+            const totalDays = (new Date(now.getFullYear(), 5, 26) - new Date(now.getFullYear(), 5, 23)) / (1000 * 60 * 60 * 24);
+            const daysPassed = (now - new Date(now.getFullYear(), 5, 23)) / (1000 * 60 * 60 * 24);
+            const progress = Math.min(1, daysPassed / totalDays);
+            document.querySelector('.loading-bar').style.width = `${progress * 100}%`;
+            
+            // If countdown is over, reveal main content
+            if (timeLeft <= 0) {
+                document.getElementById('countdown-section').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('main-content').style.opacity = '1';
+                    startFireworks();
+                }, 100);
+            }
+        }
+        
+        // Initialize countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Photo Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slider = document.getElementById('slider');
+        const dotsContainer = document.getElementById('dots-container');
+        
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+        
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(currentSlide);
+        });
+        
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        });
+        
+        // Auto-advance slides
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }, 5000);
+        
+        // Fireworks
+        function startFireworks() {
+            setInterval(() => {
+                createFirework();
+            }, 300);
+        }
+        
+        function createFirework() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ffa5a5', '#84dcc6'];
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            // Random color
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            firework.style.boxShadow = `0 0 10px 5px ${color}`;
+            
+            document.body.appendChild(firework);
+            
+            // Remove after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+        
+        // WhatsApp Share
+        document.getElementById('whatsapp-share').addEventListener('click', () => {
+            const url = window.location.href;
+            const text = "Celebrate Cato & Aurea's Birthday! Join us at";
+            window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+        });
+        
+        // Music Player
+        const audio = document.getElementById('birthday-music');
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        
+        playBtn.addEventListener('click', () => {
+            audio.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'block';
+        });
+        
+        pauseBtn.addEventListener('click', () => {
+            audio.pause();
+            pauseBtn.style.display = 'none';
+            playBtn.style.display = 'block';
+        });
+        
+        // Check if countdown is already over on page load
+        const now = new Date();
+        const targetDate = new Date(now.getFullYear(), 5, 23); // June 23rd
+        if (now > targetDate) {
+            document.getElementById('countdown-section').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('main-content').style.opacity = '1';
+            startFireworks();
+        }
+    </script>
+</body>
+</html>
