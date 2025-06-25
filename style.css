@@ -156,7 +156,85 @@
             max-width: 800px;
             margin: 0 auto 3rem;
         }
-        
+
+        .contain {
+            background: rgba(255, 107, 107, 0.2);
+           width: 100%;
+            min-height: 50vh;
+
+            /* transform: translateX(40%); */
+        }
+        @media (max-width:600px) {
+            .contain {
+            min-height: 40vh;
+            width: 100%;
+            
+            /* transform: translateX(-5%); */
+                
+            }
+            .wrapper {
+                width: 100%;
+            }
+        }
+        .wrapper {
+             display: flex;
+            flex-direction: column;
+            width: 61%;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 225, 225, .2);
+            text-align: center;
+            border-radius: 16px;
+            transform: translateX(32%);
+            min-height: 40vh;
+           gap: 40px;
+        }
+        .wrapper input {
+            width: 92%;
+            height: 40px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            color: #333;
+        }
+
+        .wrapper button {
+            width: 80%;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid gold;
+            background: #ffe66d;
+            font-size: 16px;
+        }
+
+        .wrapper button:hover {
+            scale: 1.1;
+            transition: transform 3s all ease-in;
+            background: #ffde3d;
+
+        }
+        .wrapper span {
+            background: #4ecdc4;
+            width: 100px;
+            animation: heart infinite 1s ease-in;
+        }
+
+        @keyframes heart {
+             50% {
+                transform: scale(1.0);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        .scroll {
+            position: fixed;
+            background-color: #1a1e23;
+            font-style: italic;
+            z-index: 20;
+            width: 100%;
+        }
+
         /* Photo Slider */
         .photo-slider {
             margin: 5rem auto;
@@ -331,6 +409,48 @@
         .timeline-text {
             line-height: 1.6;
         }
+
+        #username {
+    background: url(sname.png);
+     color: black;
+   
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: swing 4s infinite;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-size: 55px;
+    padding: 0 10px;
+    font-family: 'SF Espresso Shack', cursive; 
+    
+}
+
+.wrap {
+     background: url(/.gif);
+    max-width: 450px;
+    min-height: 100px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 15px;
+    color: #999;
+    padding-bottom: 60px;
+
+    box-shadow: 0 0 10px 1px rgba(0,0,0,.14), 0 1px 14px 2px rgba(0,0,0,.12), 0 0 5px -3px rgba(0,0,0,.3);
+    background-size: 100%;
+}
+.wrap .p3 {
+    width: 200px;
+    height: 160px;
+    animation: heartbeat infinite .8s ease-in;
+}
+@keyframes heartbeat {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
         
         /* Birthday Wishes */
         .wishes-section {
@@ -920,6 +1040,118 @@
             0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7)); }
             100% { filter: drop-shadow(0 0 20px gold); }
         }
+
+         /* Enhanced Fireworks */
+        .firework {
+            position: absolute;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+        
+          /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0;
+            animation: confetti-fall 5s linear forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Pulse Animation for Special Elements */
+        @keyframes pulse-glow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+            }
+        }
+        
+        .pulse-element {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float-particle 8s infinite linear;
+        }
+        
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+         /* Fireworks Canvas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
         
         /* Quiz Section */
         .quiz-section {
@@ -1199,6 +1431,70 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
+        }
+
+         /* Sweet Modal Styles */
+        .sweet-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .sweet-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            position: relative;
+            animation: modalFadeIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 3px solid var(--accent);
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .sweet-title {
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .sweet-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        
+        .sweet-close {
+            background: linear-gradient(to right, #ff6b8b, #ff4757);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 139, 0.4);
+        }
+        
+        .sweet-close:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 139, 0.6);
         }
         
         /* Countup Timer */

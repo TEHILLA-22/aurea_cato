@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+           <canvas id="fireworks"></canvas>
+    <div class="particles" id="particles"></div>
+
     <!-- Countdown Section -->
     <section id="countdown-section">
         <div class="loading-bar"></div>
@@ -39,6 +42,19 @@
     
     <!-- Main Content (revealed after countdown) -->
     <div id="main-content">
+         <div class="sweet-modal" id="sweet-modal">
+            <div class="sweet-content">
+                <h2 class="sweet-title">My Dearest Aurea</h2>
+                <p class="sweet-message" id="modal-message">You're the most amazing person I've ever known!</p>
+                <button class="sweet-close" id="modal-close">Close</button>
+            </div>
+        </div>
+
+        <div class="scroll">
+        <marquee behavior="scroll" direction="left" scrolldelay="0">
+            <p>On this Day A princess has been born. Happy Birthday Aurea</p>
+        </marquee>
+        </div>
         <!-- Birthday Header -->
         <section class="birthday-header">
             <div class="container">
@@ -51,6 +67,18 @@
                 </p>
             </div>
         </section>
+        <div class="wrap">
+
+         <h1 id="username" style="font-family:SF Espresso Shack;">AUREA</h1>
+                        <h3 class="fromMessage" id="fromMessage"></h3><br>
+                
+                <img src="wishkn.png" width="50%" height="auto" style="animation: tada 4s infinite;"/><br><br>
+                <div style="font-size: 18px; font-weight: 800; color:blue;">
+                <p id="demo"></p>
+                </div>
+                <br>
+                <img class="p3" src="p3.png" alt="">
+                </div>
         
         <!-- Photo Slider -->
         <section class="container">
@@ -145,7 +173,10 @@
                         <p>
                             May your year be filled with creativity, joy, and all the colors of happiness. 
                             Your vibrant spirit lights up every room, and I'm so grateful to have you in my life. 
-                            Here's to another year of amazing adventures together!
+                            Here's to another year of amazing adventures together! 
+                              <br>  <span style="
+                              font-style: italic;
+                              ">Emmanuella Newton</span>
                         </p>
                     </div>
                     <div class="wish-card">
@@ -154,6 +185,9 @@
                             Your kindness and wisdom inspire everyone around you. 
                             May this year bring you all the love and success you deserve. 
                             Thank you for being my rock and my partner in crime. Happy birthday, beautiful soul!
+                             <br>  <span style="
+                              font-style: italic;
+                              ">Tehillz Odjoji</span>
                         </p>
                     </div>
                     <div class="wish-card">
@@ -203,7 +237,7 @@
                     <h3 style="color: var(--accent); margin-bottom: 1rem;">Leave Your Birthday Wish</h3>
                     <input type="text" id="message-name" placeholder="Your Name" required>
                     <textarea id="message-text" placeholder="Your Birthday Message" required></textarea>
-                    <button id="submit-message">Send Wish</button>
+                    <button id="submit-message" title="Send Your Birthday Wish to Aurea">Send Wish</button>
                 </div>
             </div>
         </section>
@@ -213,6 +247,9 @@
             <div class="container">
                 <h2 class="game-title">Birthday Rocket Race</h2>
                 <p class="game-description">Help Cato & Aurea reach their birthday cake! Tap/click to boost your rocket.</p>
+                 <marquee behavior="scroll" direction="left" scrolldelay=".5s">
+                            Make sure Cato wins to get 20gb of data
+                        </marquee>
                 
                 <div class="game-container">
                     <div class="race-track">
@@ -230,8 +267,9 @@
                     </div>
                     
                     <div class="game-controls">
-                        <button id="boost1">Boost Cato!</button>
-                        <button id="boost2">Boost Aurea!</button>
+                       
+                        <button id="boost1" title="help cato to the finish-line">Boost Cato!</button>
+                        <button id="boost2" title="help aurea to the finish-line">Boost Aurea!</button>
                         <button id="reset-game">Race Again</button>
                     </div>
                     
@@ -366,6 +404,15 @@
                 </div>
             </div>
         </section>
+
+        
+        <div class="contain">
+            <div class="wrapper">
+            <h2>Input Your Name</h2>
+            <input type="text" class="enter-name" placeholder="Enter Your Name" id="name-input">
+            <button onclick="goToNextPage()"><span>👉</span>Go</button>
+            </div>
+        </div>
         
         <!-- Countup Timer -->
         <section class="countup-section">
@@ -392,6 +439,7 @@
                 <p>The fun has been going on for...</p>
             </div>
         </section>
+
 
         <!-- scroll slide section starts -->
 
@@ -442,6 +490,7 @@
                     <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
                 </div>
                 <p class="copyright">© 2025 Cato & Aurea's Birthday | All Rights Reserved</p>
+                <p class="copyright">powered by King Of Programming Tehilla</p>
             </div>
         </footer>
     </div>
@@ -753,7 +802,7 @@
             },
             {
                 question: "What did they do together during their first holiday season?",
-                options: ["Skiing", "Making gingerbread houses", "Beach party", "Road trip"],
+                options: ["Skiing", "Getting Acquinted", "Beach party", "Road trip"],
                 answer: 1
             },
             {
@@ -1045,18 +1094,23 @@
         const songs = [
             {
                 title: "Happy Birthday",
-                artist: "Traditional",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                artist: "Sia",
+                src: "Sia_-_Unstoppable_CeeNaija.com_.mp3"
             },
             {
                 title: "Celebration",
-                artist: "Kool & The Gang",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+                artist: "Alan",
+                src: "Sapphire_-_Unity_Acoustic_.mp3"
             },
             {
-                title: "Best Day Of My Life",
-                artist: "American Authors",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+                title: "Die with a smile",
+                artist: "Bruno mars",
+                src: "Lady_Gaga_Ft_Bruno_Mars_-_Die_With_A_Smile_(Jesusfully.com).mp3"
+            },
+            {
+                title: "Faded",
+                artist: "Alan",
+                src: "Alan-Walker-Faded-(RawPraise.ng).mp3"
             }
         ];
         
@@ -1177,6 +1231,126 @@
                 }, 10000);
             }, 800);
         }
+
+        // Fireworks
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // Firework particles
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.alpha = 1;
+                this.decay = Math.random() * 0.015 + 0.01;
+                this.size = Math.random() * 3 + 1;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+            
+            update() {
+                this.velocity.y += 0.05;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= this.decay;
+                this.draw();
+                return this.alpha > 0;
+            }
+        }
+        
+        // Firework class
+        class Firework {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height;
+                this.targetY = Math.random() * canvas.height / 2;
+                this.speed = Math.random() * 3 + 2;
+                this.angle = Math.atan2(this.targetY - this.y, this.x - this.x);
+                this.velocity = {
+                    x: 0,
+                    y: -this.speed
+                };
+                this.particles = [];
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                this.exploded = false;
+            }
+            
+            explode() {
+                for (let i = 0; i < 100; i++) {
+                    this.particles.push(new Particle(this.x, this.y, this.color));
+                }
+                this.exploded = true;
+            }
+            
+            update() {
+                if (!this.exploded) {
+                    this.velocity.y += 0.02;
+                    this.x += this.velocity.x;
+                    this.y += this.velocity.y;
+                    
+                    // Draw the firework trail
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                    
+                    if (this.velocity.y >= 0) {
+                        this.explode();
+                    }
+                }
+                
+                // Update particles
+                for (let i = this.particles.length - 1; i >= 0; i--) {
+                    if (!this.particles[i].update()) {
+                        this.particles.splice(i, 1);
+                    }
+                }
+                
+                if (this.exploded && this.particles.length === 0) {
+                    this.reset();
+                }
+            }
+        }
+        
+        const fireworks = Array(5).fill().map(() => new Firework());
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            fireworks.forEach(firework => firework.update());
+        }
+        
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
         
         function createConfetti() {
             const confetti = document.createElement('div');
@@ -1206,6 +1380,44 @@
         }
         
         window.addEventListener('resize', handleResize);
+         function goToNextPage() {
+      const name = document.getElementById("name-input").value;
+      if (name.trim() !== "") {
+          // Redirect to next page with name as a query parameter
+          window.location.href = `p.html?name=${encodeURIComponent(name)}`;
+      } else {
+          alert("Please enter a name.");
+      }
+  }
+
+   // Sweet Modal functionality
+        const sweetModal = document.getElementById('sweet-modal');
+        const modalMessage = document.getElementById('modal-message');
+        const modalClose = document.getElementById('modal-close');
+        
+        function showSweetMessage(title, message) {
+            document.querySelector('.sweet-title').textContent = title;
+            modalMessage.textContent = message;
+            sweetModal.style.display = 'flex';
+            
+            // Trigger confetti
+            createBurstFirework();
+        }
+        
+        modalClose.addEventListener('click', function() {
+            sweetModal.style.display = 'none';
+        });
+        
+        sweetModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                sweetModal.style.display = 'none';
+            }
+        });
+        
+        // Initial sweet message
+        setTimeout(() => {
+            showSweetMessage('Welcome Aurea!', 'This special website was created for US to celebrate your amazing day! Enjoy every moment of it, just like I enjoy every spending moment with you.');
+        }, 1000);
     </script>
     <script src="server.js"></script>
 </body>
