@@ -102,7 +102,7 @@
                         <div class="slide-caption">E - Extraordinary in every way imaginable</div>
                     </div>
                     <div class="slide">
-                        <img src="./bro pic 3.jpg" alt="A - Admirable">
+                        <img src="./images/aurea3.jpg" alt="A - Admirable">
                         <div class="slide-caption">A - Admirable person I'm lucky to know</div>
                     </div>
                     <div class="slide">
@@ -131,7 +131,7 @@
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">June 2022</div>
-                            <div class="timeline-text">Cato and Aurea meet for the first time at a mutual friend's gathering. Instant connection!</div>
+                            <div class="timeline-text">Cato and Aurea meet for the first time On an Online platform. Instant connection!</div>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -143,13 +143,13 @@
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">December 2022</div>
-                            <div class="timeline-text">Our first holiday season together - exchanging heartfelt gifts and making gingerbread houses.</div>
+                            <div class="timeline-text">Our first holiday season together - exchanging heartfelt gifts and making Memories.</div>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">June 2023</div>
-                            <div class="timeline-text">Joint birthday trip to the mountains - hiking, stargazing, and deep conversations.</div>
+                            <div class="timeline-text">Joint birthday trip and deep conversations.</div>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -176,6 +176,7 @@
                             Here's to another year of amazing adventures together! 
                               <br>  <span style="
                               font-style: italic;
+                              color: aquamarine;
                               ">Emmanuella Newton</span>
                         </p>
                     </div>
@@ -187,6 +188,7 @@
                             Thank you for being my rock and my partner in crime. Happy birthday, beautiful soul!
                              <br>  <span style="
                               font-style: italic;
+                              color: aquamarine;
                               ">Tehillz Odjoji</span>
                         </p>
                     </div>
@@ -219,17 +221,17 @@
                     <div class="message-card">
                         <div class="message-author">Alex from Paris</div>
                         <div class="message-text">Happy Birthday to two of the most amazing people I know! Your friendship inspires everyone around you. May this year bring you both endless joy and success!</div>
-                        <div class="message-date">June 15, 2024</div>
+                        <div class="message-date">June 25, 2025</div>
                     </div>
                     <div class="message-card">
                         <div class="message-author">Sophia from Tokyo</div>
                         <div class="message-text">To Cato & Aurea - your bond is like a rare gem that becomes more beautiful with time. Wishing you both a birthday as wonderful as your friendship!</div>
-                        <div class="message-date">June 14, 2024</div>
+                        <div class="message-date">June 26, 2025</div>
                     </div>
                     <div class="message-card">
                         <div class="message-author">Miguel from Mexico City</div>
                         <div class="message-text">Feliz cumpleaños! Your friendship story warms my heart. May your special days be filled with love, laughter, and all your heart desires!</div>
-                        <div class="message-date">June 13, 2024</div>
+                        <div class="message-date">June 26, 2025</div>
                     </div>
                 </div>
                 
@@ -364,8 +366,8 @@
                     <div class="collage-item">
                         <img src="./images/tehilla 3.jpg" alt="Memory 3">
                     </div>
-                    <div class="collage-item">
-                        <img src="./images/tehilla 8.jpg" alt="Memory 4">
+                     <div class="collage-item">
+                        <img src="./images/aurea3.jpg" alt="Memory 2">
                     </div>
                     <div class="collage-item">
                         <img src="./bro pic 3.jpg" alt="Memory 5">
@@ -960,7 +962,9 @@
                         "Woo-hoo! Let's celebrate! 🎊",
                         "Thanks for the birthday love! 🥳",
                         "You're making this party awesome! 💃",
-                        "Best. Birthday. Ever! 🎂"
+                        "Best. Birthday. Ever! 🎂",
+                        "Always a Pleasure having you"
+
                     ];
                     const randomReply = replies[Math.floor(Math.random() * replies.length)];
                     
@@ -1091,73 +1095,84 @@
         loadMessages();
         
         // Music Player
-        const songs = [
-            {
-                title: "Happy Birthday",
-                artist: "Sia",
-                src: "Sia_-_Unstoppable_CeeNaija.com_.mp3"
-            },
-            {
-                title: "Celebration",
-                artist: "Alan",
-                src: "Sapphire_-_Unity_Acoustic_.mp3"
-            },
-            {
-                title: "Die with a smile",
-                artist: "Bruno mars",
-                src: "Lady_Gaga_Ft_Bruno_Mars_-_Die_With_A_Smile_(Jesusfully.com).mp3"
-            },
-            {
-                title: "Faded",
-                artist: "Alan",
-                src: "Alan-Walker-Faded-(RawPraise.ng).mp3"
-            }
-        ];
-        
         const audio = document.getElementById('birthday-music');
         const playBtn = document.getElementById('play-btn');
         const pauseBtn = document.getElementById('pause-btn');
         const nextBtn = document.getElementById('next-btn');
         const songInfo = document.getElementById('song-info');
         
-        let currentSongIndex = 0;
-        
-        function loadSong(index) {
-            const song = songs[index];
-            audio.src = song.src;
-            songInfo.textContent = `${song.title} - ${song.artist}`;
+        // Playlist - Add your own song URLs here
+        const playlist = [
+            {
+                title: "Happy Birthday",
+                url: "Sia_-_Unstoppable_CeeNaija.com_.mp3"
+            },
+           
+            {
+                title: "Friendship Anthem",
+                url: "Lady_Gaga_Ft_Bruno_Mars_-_Die_With_A_Smile_(Jesusfully.com).mp3"
+            },
+
+             {
+                title: "Birthday moods",
+                url: "Alan-Walker-Faded-(RawPraise.ng).mp3"
+            },
             
-            // Preload the song
-            audio.load();
+             {
+                title: "Celebration Time",
+                url: "Sapphire_-_Unity_Acoustic_.mp3"
+            }
+        ];
+        
+        let currentSongIndex = 0;
+        let isPlaying = false;
+        
+        // Load a song from the playlist
+        function loadSong(index) {
+            currentSongIndex = index;
+            const song = playlist[currentSongIndex];
+            audio.src = song.url;
+            songInfo.textContent = `Now Playing: ${song.title}`;
+            
+            if (isPlaying) {
+                audio.play().catch(e => console.log("Auto-play prevented:", e));
+            }
         }
         
-        function playSong() {
+        // Play next song in playlist
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            loadSong(currentSongIndex);
+        }
+        
+        // Event listeners
+        playBtn.addEventListener('click', () => {
+            isPlaying = true;
             audio.play();
             playBtn.style.display = 'none';
             pauseBtn.style.display = 'block';
-        }
+            
+            // Load first song if none is loaded
+            if (!audio.src) {
+                loadSong(0);
+            }
+        });
         
-        function pauseSong() {
+        pauseBtn.addEventListener('click', () => {
+            isPlaying = false;
             audio.pause();
-            playBtn.style.display = 'block';
             pauseBtn.style.display = 'none';
-        }
+            playBtn.style.display = 'block';
+        });
+        nextBtn.addEventListener('click', () => {
+            currentSongIndex + 1;
+        })
         
-        function nextSong() {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
-            loadSong(currentSongIndex);
-            if (!audio.paused) playSong();
-        }
-        
-        playBtn.addEventListener('click', playSong);
-        pauseBtn.addEventListener('click', pauseSong);
-        nextBtn.addEventListener('click', nextSong);
-        
-        // When song ends, play next one
+        // When song ends, play next one automatically
         audio.addEventListener('ended', nextSong);
         
-        // Load first song
-        loadSong(currentSongIndex);
+        // Load first song when page loads (but don't autoplay)
+        loadSong(0);
         
         // WhatsApp Share Button
         document.getElementById('whatsapp-share').addEventListener('click', () => {
@@ -1352,20 +1367,53 @@
         });
 
         
-        function createConfetti() {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.left = `${Math.random() * window.innerWidth}px`;
-            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            confetti.style.opacity = Math.random() * 0.5 + 0.5;
-            confetti.style.width = `${Math.random() * 10 + 5}px`;
-            confetti.style.height = `${Math.random() * 10 + 5}px`;
-            document.body.appendChild(confetti);
-            
-            // Remove after animation completes
+       function createConfetti() {
+            setInterval(() => {
+                for (let i = 0; i < 20; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    // Random position at top of screen
+                    confetti.style.left = `${Math.random() * window.innerWidth}px`;
+                    confetti.style.top = '-10px';
+                    
+                    // Random color
+                    const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#ffa5a5', '#84dcc6'];
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size and shape
+                    confetti.style.width = `${Math.random() * 10 + 5}px`;
+                    confetti.style.height = `${Math.random() * 10 + 5}px`;
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    
+                    // Random animation duration
+                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+            }, 3000);
+        }
+        
+        // Initialize all effects when main content is shown
+        function showMainContent() {
+            document.getElementById('countdown-section').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
             setTimeout(() => {
-                confetti.remove();
-            }, 5000);
+                document.getElementById('main-content').style.opacity = '1';
+                startFireworksAnimation();
+                createFloatingHearts();
+                createConfetti();
+                
+                // Add pulse effect to important elements
+                document.querySelectorAll('.birthday-title, .wish-card, .timeline-title').forEach(el => {
+                    el.classList.add('pulse-element');
+                });
+            }, 100);
         }
         
         // Initialize special effects when countdown completes
@@ -1418,6 +1466,42 @@
         setTimeout(() => {
             showSweetMessage('Welcome Aurea!', 'This special website was created for US to celebrate your amazing day! Enjoy every moment of it, just like I enjoy every spending moment with you.');
         }, 1000);
+
+
+          // Performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create floating particles
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                const particleCount = 50;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            createParticles();
+             // Load images lazily
+            const lazyImages = document.querySelectorAll('.memory-image');
+            const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const lazyImage = entry.target;
+                        lazyImage.src = lazyImage.dataset.src || lazyImage.src;
+                        lazyImageObserver.unobserve(lazyImage);
+                    }
+                });
+            });
+
+            lazyImages.forEach(lazyImage => {
+                lazyImageObserver.observe(lazyImage);
+            });
+        });
     </script>
     <script src="server.js"></script>
 </body>
