@@ -1068,7 +1068,7 @@
             height: 10px;
             background-color: var(--accent);
             opacity: 0;
-            animation: confetti-fall 5s linear forwards;
+            animation: confetti-fall 1s linear forwards infinite;
             pointer-events: none;
             z-index: 1000;
         }
